@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:homeservice/view/screen/appint_user.dart';
 import 'package:homeservice/view/screen/request_page.dart';
 
+import '../../generated/l10n.dart';
+
 class Appointement extends StatelessWidget {
   const Appointement({super.key});
 
-  static const List<Tab> myTabs = <Tab>[
-    Tab(child:Text( 'طلباتي')),
-    Tab(child: Text('مواعيدي')),
+  static  List<Tab> myTabs = <Tab>[
+    Tab(child:Text( S.current.myRequests)),
+    Tab(child: Text(S.current.myAppointments)),
   ];
 
   @override
@@ -16,7 +18,7 @@ class Appointement extends StatelessWidget {
       length: myTabs.length,
       child: Scaffold(
         appBar: AppBar(
-          bottom: const TabBar(
+          bottom: TabBar(
             indicatorColor: Colors.amber,
             labelColor: Colors.amber,
             unselectedLabelColor: Colors.grey,

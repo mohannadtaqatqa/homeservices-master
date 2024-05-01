@@ -4,14 +4,17 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
+import 'package:homeservice/core/function/fcm_config.dart';
 import 'package:homeservice/core/utilti/Color.dart';
 import 'package:homeservice/view/screen/OTP.dart';
 import 'package:homeservice/view/screen/buttom_bar.dart';
 import 'package:homeservice/view/screen/home.dart';
 import 'package:homeservice/view/screen/check_email.dart';
+import 'package:homeservice/view/screen/navbar_provider.dart';
 import 'package:homeservice/view/screen/singup.dart';
 import 'package:homeservice/view/screen/welcome.dart';
 import 'package:http/http.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../generated/l10n.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
@@ -83,6 +86,7 @@ class _loginState extends State<login> {
   final myController1 = TextEditingController();
 
   Future<void> _login() async {
+
     final String email = myController.text.trim();
     final String pass = myController1.text.trim();
     // final stroge = FlutterSecureStorage();
@@ -94,32 +98,52 @@ class _loginState extends State<login> {
         },
         body: jsonEncode(<String, String>{"email": email, "password": pass}),
       );
+      print(response.statusCode);
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseData = jsonDecode(response.body);
-        final String userEmail = responseData['user']['email'].toString();
-        final String userId = responseData['user']['id'].toString();
-        final String userName = responseData['user']['fname'].toString();
-        final String isValid = responseData['user']['isvaled'].toString();
-        final prefs = await SharedPreferences.getInstance();
-        // ارسال اشعار اذا تمت الموافقة على الطلب
-        FirebaseMessaging.instance.subscribeToTopic("ok$userId");
-        //  await stroge.write(key: "userEmail", value: userEmail);
-        //  await stroge.write(key: 'isLoggedIn', value: 'true');
-        //  await stroge.write(key: "userName", value: userName);
-        //await stroge.write(key: "userID", value: userId);
-        prefs.setString("userEmail", userEmail);
-        prefs.setString("userName", userName);
-        prefs.setString("userId", userId);
-        print(isValid);
-        if (isValid == "1") {
-          Get.to(() => const Navbar());
-        } else {
-          Get.to(() => forgetOTP(
-                email: email,
-                currentPage: 'LoginPage',
-              ));
+          responseData['token'] = JwtDecoder.decode(responseData['token']);
+          print(responseData);
+        // if (responseData['message'] == "Login successful") {
+          final String userType = responseData['token']['userType'].toString();
+          final String userEmail = responseData['token']['email'].toString();
+          final String userId = responseData['token']['userId'].toString();
+          final String firstName = responseData['token']['fname'].toString();
+          final String lastName = responseData['token']['lname'].toString();
+          final String isValid =
+              responseData['token']['status_verifycode'].toString();
+          final prefs = await SharedPreferences.getInstance();
+          // ارسال اشعار اذا تمت الموافقة على الطلب
+          prefs.setString("userEmail", userEmail);
+          prefs.setString("firstName", firstName);
+          prefs.setString("lastName", lastName);
+          prefs.setString("userId", userId);
+          prefs.setString("userType", userType);
+          print(userId);
+          print(isValid);
+          if (isValid == "1") {
+            if (userType == "0") {
+              print("ok");
+          FirebaseMessaging.instance.subscribeToTopic("ok${userId}");
+          FirebaseMessaging.instance.subscribeToTopic("reject" + userId);
+          FirebaseMessaging.instance.subscribeToTopic("sugest" + userId);
+              Get.to(() => const Navbar());
+            } else if (userType == "1") {
+    FirebaseMessaging.instance.subscribeToTopic("booking"+userId);
+
+              print("provider");
+              prefs.setString("rating",responseData['token']['rating'].toString() ) ;
+              // prefs.setString("providerId", responseData['token'][''].toString());
+              Get.to(() => const Navbar_Provider());
+            }
+          } else {
+            Get.to(() => forgetOTP(
+                  email: email,
+                  currentPage: 'LoginPage',
+                ));
+          }
         }
-      } else {
+       else {
+        print(response.body);
         // Login failed, show error message
         final Map<String, dynamic> responseData = json.decode(response.body);
         final String errorMessage = responseData['error'];
@@ -132,15 +156,16 @@ class _loginState extends State<login> {
         ));
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Center(
-          child: Text(
-            "كلمة المرور او الايميل خطأ",
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-        backgroundColor: Colors.red,
-      ));
+      print("object");
+      // ScaffoldMessenger.).showSnackBar(const SnackBar(
+      // content: Center(
+      //   child: Text(
+      //     "كلمة المرور او الايميل خطأ",
+      //     style: TextStyle(color: Colors.white),
+      //   ),
+      // ),
+      // backgroundColor: Colors.red,
+      // ));
 
       // Handle error
     }
@@ -269,12 +294,10 @@ class _loginState extends State<login> {
             //   (Get.to(() => const Home_Page()));
             // }
             ,
-            child: Container(
-              child: Text(
-                S.of(context).login,
-                style: TextStyle(
-                    color: whiteColor, fontSize: 20.0, fontFamily: 'Cairo'),
-              ),
+            child: Text(
+              S.of(context).login,
+              style: TextStyle(
+                  color: whiteColor, fontSize: 20.0, fontFamily: 'Cairo'),
             ),
           ),
         ),

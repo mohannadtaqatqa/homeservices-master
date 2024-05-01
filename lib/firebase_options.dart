@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,9 +28,15 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
-        return windows;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for windows - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -40,52 +49,20 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCEKDc57zmmUpD8A0fDAvmJhi6qopNL0Jo',
-    appId: '1:393024816861:web:bea001723ccdb1d19c7d34',
-    messagingSenderId: '393024816861',
-    projectId: 'home-services-5b47e',
-    authDomain: 'home-services-5b47e.firebaseapp.com',
-    databaseURL: 'https://home-services-5b47e-default-rtdb.firebaseio.com',
-    storageBucket: 'home-services-5b47e.appspot.com',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBQ9en3utqEsK7ZjPieR76dfUe-vTxoTIU',
-    appId: '1:393024816861:android:dc6115bfc611b6639c7d34',
-    messagingSenderId: '393024816861',
-    projectId: 'home-services-5b47e',
-    databaseURL: 'https://home-services-5b47e-default-rtdb.firebaseio.com',
-    storageBucket: 'home-services-5b47e.appspot.com',
+    apiKey: 'AIzaSyBP043eooZUM34jDptVRCKvGYsuwtHiwn0',
+    appId: '1:622519479170:android:f2badeeaa8b41aa3e77d9b',
+    messagingSenderId: '622519479170',
+    projectId: 'home-services-52080',
+    storageBucket: 'home-services-52080.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDqZ0N-PifpvkGHN7KlEeIyobRi4N8fZoo',
-    appId: '1:393024816861:ios:48e856a9e41f042b9c7d34',
-    messagingSenderId: '393024816861',
-    projectId: 'home-services-5b47e',
-    databaseURL: 'https://home-services-5b47e-default-rtdb.firebaseio.com',
-    storageBucket: 'home-services-5b47e.appspot.com',
+    apiKey: 'AIzaSyCG2tNEZ5gxgL9AgzPEkXRPXwSSIoYlTMc',
+    appId: '1:622519479170:ios:5ff424284ea1ae54e77d9b',
+    messagingSenderId: '622519479170',
+    projectId: 'home-services-52080',
+    storageBucket: 'home-services-52080.appspot.com',
     iosBundleId: 'com.home.homeservice',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDqZ0N-PifpvkGHN7KlEeIyobRi4N8fZoo',
-    appId: '1:393024816861:ios:48e856a9e41f042b9c7d34',
-    messagingSenderId: '393024816861',
-    projectId: 'home-services-5b47e',
-    databaseURL: 'https://home-services-5b47e-default-rtdb.firebaseio.com',
-    storageBucket: 'home-services-5b47e.appspot.com',
-    iosBundleId: 'com.home.homeservice',
-  );
-
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyCEKDc57zmmUpD8A0fDAvmJhi6qopNL0Jo',
-    appId: '1:393024816861:web:a1c337265030c3fc9c7d34',
-    messagingSenderId: '393024816861',
-    projectId: 'home-services-5b47e',
-    authDomain: 'home-services-5b47e.firebaseapp.com',
-    databaseURL: 'https://home-services-5b47e-default-rtdb.firebaseio.com',
-    storageBucket: 'home-services-5b47e.appspot.com',
   );
 }

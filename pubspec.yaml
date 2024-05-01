@@ -53,6 +53,8 @@ dependencies:
   firebase_messaging: ^14.8.2
   firebase_core: ^2.27.0
   firebase_analytics: ^10.8.9
+  rating_dialog: ^2.0.4
+  jwt_decoder: ^2.0.1
 
 
 
@@ -92,6 +94,7 @@ flutter:
     - images/whatsConcat.png
     - images/otp.png
     - images/404.jpg
+    # - images/img 404.png
 
     #   - images/a_dot_ham.jpeg
     # An image asset can refer to one or more resolution-specific "variants", see

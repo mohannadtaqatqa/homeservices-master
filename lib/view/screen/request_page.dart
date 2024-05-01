@@ -53,7 +53,7 @@ class Request extends StatelessWidget {
                   children: [
                     
                     Image.asset(
-                      'images/404.jpg', 
+                      'images/img 404.png', 
                       width: 200,
                       height: 200,
                     ),
@@ -79,7 +79,7 @@ class Request extends StatelessWidget {
                   descrbtion: requests[index]['description'],
                   city: requests[index]['city'],
                   address: requests[index]['address'],
-                  status: requests[index]['id_status'],
+                  status: requests[index]['status'],
                   newDate: requests[index]['newdate'],
                 ),
               );
@@ -88,7 +88,7 @@ class Request extends StatelessWidget {
             return  Center(child: Column(children: [
 
               Image.asset(
-                      'images/404.jpg', 
+                      'images/img 404.png', 
                       width: 200,
                       height: 200,
                     ),

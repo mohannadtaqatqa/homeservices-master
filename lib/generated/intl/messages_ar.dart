@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "AppointmentBooking": MessageLookupByLibrary.simpleMessage("حجز موعد"),
+        "Archive": MessageLookupByLibrary.simpleMessage("الارشيف"),
         "ConfirmNewPassword":
             MessageLookupByLibrary.simpleMessage("تاكيد كلمة المرور الجديدة"),
         "Contact": MessageLookupByLibrary.simpleMessage("اتصال"),
@@ -43,17 +44,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "Services": MessageLookupByLibrary.simpleMessage("الخدمات"),
         "Settings": MessageLookupByLibrary.simpleMessage("الاعدادات"),
         "SingUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+        "SubmitRating": MessageLookupByLibrary.simpleMessage("ارسال التقييم"),
+        "TapRating": MessageLookupByLibrary.simpleMessage(
+            "انقر لتقييم مزود الخدمة وإعطاء بعض الملاحظات عن مزود الخدمة"),
         "address": MessageLookupByLibrary.simpleMessage("العنوان"),
         "alreadyhaveaccount":
             MessageLookupByLibrary.simpleMessage("لدي حساب بالفعل!"),
         "bethlahem": MessageLookupByLibrary.simpleMessage("بيت لحم"),
         "city": MessageLookupByLibrary.simpleMessage("المدينة"),
+        "compulationRating":
+            MessageLookupByLibrary.simpleMessage("انتهاء والتقييم"),
         "confirm": MessageLookupByLibrary.simpleMessage("تاكيد"),
         "createaccountWith":
             MessageLookupByLibrary.simpleMessage("إنشاء حساب باستخدام"),
         "createaccountaAs":
             MessageLookupByLibrary.simpleMessage("إنشاء حساب كـ"),
         "customer": MessageLookupByLibrary.simpleMessage("العميل"),
+        "date": MessageLookupByLibrary.simpleMessage("التاريخ"),
+        "description": MessageLookupByLibrary.simpleMessage("وصف"),
         "enterCode": MessageLookupByLibrary.simpleMessage("أدخل رمز التأكيد"),
         "erroeFirstName": MessageLookupByLibrary.simpleMessage(
             "يجب ألا يكون الاسم الأول فارغًا"),
@@ -70,6 +78,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "يجب أن لا تقل كلمة المرور عن 4 أحرف"),
         "errorPhone": MessageLookupByLibrary.simpleMessage(
             "يجب أن يكون رقم الهاتف صالحًا"),
+        "errorRating":
+            MessageLookupByLibrary.simpleMessage("يجب أن تقييم الخدمة"),
         "errorSecondName": MessageLookupByLibrary.simpleMessage(
             "يجب ألا يكون الاسم الثاني فارغًا"),
         "errorServiceType":
@@ -81,10 +91,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "firstname": MessageLookupByLibrary.simpleMessage("الاسم الأول"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "mechanical": MessageLookupByLibrary.simpleMessage("ميكانيكي"),
+        "myAppointments": MessageLookupByLibrary.simpleMessage("مواعيدي"),
+        "myRequests": MessageLookupByLibrary.simpleMessage("طلباتي"),
         "nablus": MessageLookupByLibrary.simpleMessage("نابلس"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "plumber": MessageLookupByLibrary.simpleMessage("سباك"),
+        "price": MessageLookupByLibrary.simpleMessage("السعر"),
         "ramallah": MessageLookupByLibrary.simpleMessage("رام الله"),
         "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
         "reservation": MessageLookupByLibrary.simpleMessage("حجز"),
@@ -99,6 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "serviceProvider":
             MessageLookupByLibrary.simpleMessage("مزودي الخدمات"),
         "serviceType": MessageLookupByLibrary.simpleMessage("نوع الخدمة"),
+        "theService": MessageLookupByLibrary.simpleMessage("الخدمة"),
         "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "weSendCode": MessageLookupByLibrary.simpleMessage(
             "سنقوم تلقائيًا بإرسال رمز التأكيد إلى رقم هاتفك"),

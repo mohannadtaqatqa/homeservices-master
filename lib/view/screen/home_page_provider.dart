@@ -7,14 +7,14 @@ class HomePageProvider extends StatelessWidget {
   getData() async {
     final prefs = await SharedPreferences.getInstance();
     String rating = prefs.getString("rating")!;
-    String countRequest = prefs.getString("countRequest")!;
-    String userName = prefs.getString("userName")!;
+    // String countRequest = prefs.getString("countRequest")!;
+    String userName = prefs.getString("firstName")!;
     String lastName = prefs.getString("lastName")!;
 
     return {
       "rating": rating,
-      "countRequest": countRequest,
-      "userName": userName,
+      // "countRequest": countRequest,
+      "firstName": userName,
       "lastName": lastName
     };
   }
@@ -26,9 +26,8 @@ class HomePageProvider extends StatelessWidget {
           child: FutureBuilder(
               future: getData(),
               builder: (context, snapshot) {
-                print(snapshot.data);
-                Map data = snapshot.data as Map;
-                print(data);
+                Map<String, String?> data =  snapshot.data as Map<String, String?>;
+                // data.toString();
                 return Container(
                   color: Colors.grey[200],
                   child: Column(
@@ -56,7 +55,7 @@ class HomePageProvider extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "${data['userName']} ${data['lastName']}",
+                                      "${data['firstName'] ?? ""} ${data['lastName'] ?? ""}",
                                       style: const TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 22,
@@ -202,7 +201,7 @@ class HomePageProvider extends StatelessWidget {
                                 const SizedBox(
                                   height: 12,
                                 ),
-                                Text("${data['rating']}",
+                                Text("${data['rating']??""}",
                                     style: TextStyle(
                                         color: blackColor,
                                         fontWeight: FontWeight.w800,
@@ -242,7 +241,7 @@ class HomePageProvider extends StatelessWidget {
                                 const SizedBox(
                                   height: 12,
                                 ),
-                                Text("${data['countRequest']}",
+                                Text("5",
                                     style: TextStyle(
                                         color: blackColor,
                                         fontWeight: FontWeight.w800,

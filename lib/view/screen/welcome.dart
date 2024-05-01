@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:homeservice/core/utilti/Color.dart';
 import 'package:homeservice/view/screen/lang.dart';
-import 'package:homeservice/view/screen/login_user.dart';
+import 'package:homeservice/view/screen/login.dart';
 import 'package:homeservice/view/screen/singup.dart';
 import 'package:homeservice/view/widgit/registerBy.dart';
 
@@ -63,7 +63,7 @@ class Welcome extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0))),
                       onPressed: () {
-                        Get.to(() => const Login_User());
+                        Get.to(() => const login());
                         // (Navigator.pushNamed(context, "/login"));
                       },
                       child: Container(

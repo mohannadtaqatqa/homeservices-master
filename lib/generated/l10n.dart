@@ -649,6 +649,116 @@ class S {
       args: [],
     );
   }
+
+  /// `Compulation and evaluation`
+  String get compulationRating {
+    return Intl.message(
+      'Compulation and evaluation',
+      name: 'compulationRating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The service`
+  String get theService {
+    return Intl.message(
+      'The service',
+      name: 'theService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get description {
+    return Intl.message(
+      'Description',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price`
+  String get price {
+    return Intl.message(
+      'Price',
+      name: 'price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date`
+  String get date {
+    return Intl.message(
+      'Date',
+      name: 'date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap to rate the service provider, and give some feedback about the service provider`
+  String get TapRating {
+    return Intl.message(
+      'Tap to rate the service provider, and give some feedback about the service provider',
+      name: 'TapRating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please rate the service`
+  String get errorRating {
+    return Intl.message(
+      'Please rate the service',
+      name: 'errorRating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit Rating`
+  String get SubmitRating {
+    return Intl.message(
+      'Submit Rating',
+      name: 'SubmitRating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Requests`
+  String get myRequests {
+    return Intl.message(
+      'My Requests',
+      name: 'myRequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Appointments`
+  String get myAppointments {
+    return Intl.message(
+      'My Appointments',
+      name: 'myAppointments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Archives`
+  String get Archive {
+    return Intl.message(
+      'Archives',
+      name: 'Archive',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

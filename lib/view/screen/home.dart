@@ -8,6 +8,7 @@ import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../generated/l10n.dart';
+import '../widgit/show_more.dart';
 
 class Home_Page extends StatefulWidget {
   const Home_Page({
@@ -43,7 +44,7 @@ class _Home_PageState extends State<Home_Page> {
 //
   Future<String> getName() async {
     final prefs = await SharedPreferences.getInstance();
-    String name = prefs.getString("userName")!;
+    String name = prefs.getString("firstName")!;
     return name;
   }
 
@@ -51,6 +52,33 @@ class _Home_PageState extends State<Home_Page> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          actions:[ Row(
+                  children: [
+                    const Text(
+                      'الخدمات',
+                      style: TextStyle(
+                        fontFamily: 'cairo',
+                        fontSize: 18,
+                      ),
+                      textAlign: TextAlign.end,
+                    ),
+                    InkWell(
+                      onTap: ()=>{
+                        Get.to(()=> const All_service())
+
+                      },
+                      child: const Text("عرض المزيد",style: TextStyle(
+                        fontFamily: 'cairo',
+                          fontSize: 18,
+                          color: Colors.amberAccent
+                      ),
+                      textAlign: TextAlign.start
+                      ),
+                    )
+                  ],
+                ),]
+        ),
         body: SafeArea(
             left: true,
             child: FutureBuilder(

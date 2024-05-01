@@ -1,18 +1,22 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:homeservice/view/widgit/appointment.dart'; 
-import 'package:http/http.dart' as http; 
+import 'package:homeservice/view/widgit/appointment.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+String? userId;
+String? userType;
 
 class AppointmentPage_provider extends StatelessWidget {
   const AppointmentPage_provider({super.key});
-  final int userId = 11;
 
   Future<List<Map<String, dynamic>>> fetchAppointments() async {
     try {
-      final response = await http
-          .get(Uri.parse('http://10.0.2.2:5000/GETAppointment/provider/$userId'));
+      final prefs = await SharedPreferences.getInstance();
+      userId = prefs.getString('userId')!;
+      userType = prefs.getString('userType')!;
+      final response = await http.get(
+          Uri.parse('http://10.0.2.2:5000/GETAppointment/provider/$userId'));
       if (response.statusCode == 200) {
         final List resBody = jsonDecode(response.body);
         return resBody.cast<Map<String, dynamic>>();
@@ -49,7 +53,7 @@ class AppointmentPage_provider extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'images/404.jpg',
+                      'images/img 404.png',
                       width: 200,
                       height: 200,
                     ),
@@ -65,16 +69,21 @@ class AppointmentPage_provider extends StatelessWidget {
               final appointments = snapshot.data!;
               return ListView.builder(
                 itemCount: appointments.length,
-                itemBuilder: (context, index) => Appointment(
-                  fname: appointments[index]['customer_fname'],
-                  lname: appointments[index]['customer_lname'],
-                  city: appointments[index]['city'],
-                  address: appointments[index]['address'],
-                  des: appointments[index]['description'],
-                  date: appointments[index]['date'],
-                  phone: appointments[index]['phone_num'],
-                  servname: appointments[index]['servcie_name'],
-                ),
+                itemBuilder: (context, index) {
+                  return Appointment(
+                    userType: userType!,
+                    customerId: '',
+                    providerId: "$userId",
+                    fname: appointments[index]['customer_fname'],
+                    lname: appointments[index]['customer_lname'],
+                    city: appointments[index]['city'],
+                    address: appointments[index]['address'],
+                    des: appointments[index]['description'],
+                    date: appointments[index]['date'],
+                    phone: appointments[index]['phone_num'],
+                    servname: appointments[index]['servcie_name'], 
+                  );
+                },
               );
             }
 
@@ -82,13 +91,13 @@ class AppointmentPage_provider extends StatelessWidget {
               child: Column(
                 children: [
                   Image.asset(
-                    'images/404.jpg',
+                    'images/img 404.png',
                     width: 400,
                     height: 200,
                   ),
                   const SizedBox(height: 20),
-                    Text('You don\'t have any appointments yet.',
-                        style: Theme.of(context).textTheme.headline6),
+                  Text('You don\'t have any appointments yet.',
+                      style: Theme.of(context).textTheme.headline6),
                 ],
               ),
             );

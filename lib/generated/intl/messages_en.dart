@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "AppointmentBooking":
             MessageLookupByLibrary.simpleMessage("Appointment Booking"),
+        "Archive": MessageLookupByLibrary.simpleMessage("Archives"),
         "ConfirmNewPassword":
             MessageLookupByLibrary.simpleMessage("Confirm new password"),
         "Contact": MessageLookupByLibrary.simpleMessage("Contact"),
@@ -43,17 +44,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "Services": MessageLookupByLibrary.simpleMessage("Services"),
         "Settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "SingUp": MessageLookupByLibrary.simpleMessage("Sing Up"),
+        "SubmitRating": MessageLookupByLibrary.simpleMessage("Submit Rating"),
+        "TapRating": MessageLookupByLibrary.simpleMessage(
+            "Tap to rate the service provider, and give some feedback about the service provider"),
         "address": MessageLookupByLibrary.simpleMessage("address"),
         "alreadyhaveaccount":
             MessageLookupByLibrary.simpleMessage("I already have an account!"),
         "bethlahem": MessageLookupByLibrary.simpleMessage("Bethlahem"),
         "city": MessageLookupByLibrary.simpleMessage("city"),
+        "compulationRating":
+            MessageLookupByLibrary.simpleMessage("Compulation and evaluation"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "createaccountWith":
             MessageLookupByLibrary.simpleMessage("Create an account with"),
         "createaccountaAs":
             MessageLookupByLibrary.simpleMessage("create an account as"),
         "customer": MessageLookupByLibrary.simpleMessage("customer"),
+        "date": MessageLookupByLibrary.simpleMessage("Date"),
+        "description": MessageLookupByLibrary.simpleMessage("Description"),
         "enterCode":
             MessageLookupByLibrary.simpleMessage("Enter Verification code"),
         "erroeFirstName": MessageLookupByLibrary.simpleMessage(
@@ -74,6 +82,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "The length of the password must not be less than 4"),
         "errorPhone": MessageLookupByLibrary.simpleMessage(
             "The phone number must be valid"),
+        "errorRating":
+            MessageLookupByLibrary.simpleMessage("Please rate the service"),
         "errorSecondName": MessageLookupByLibrary.simpleMessage(
             "The second name must not be empty"),
         "errorServiceType": MessageLookupByLibrary.simpleMessage(
@@ -85,12 +95,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "firstname": MessageLookupByLibrary.simpleMessage("first name"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "mechanical": MessageLookupByLibrary.simpleMessage("mechanical"),
+        "myAppointments":
+            MessageLookupByLibrary.simpleMessage("My Appointments"),
+        "myRequests": MessageLookupByLibrary.simpleMessage("My Requests"),
         "myReservations":
             MessageLookupByLibrary.simpleMessage("My Reservations"),
         "nablus": MessageLookupByLibrary.simpleMessage("Nablus"),
         "password": MessageLookupByLibrary.simpleMessage("password"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("phone number"),
         "plumber": MessageLookupByLibrary.simpleMessage("plumber"),
+        "price": MessageLookupByLibrary.simpleMessage("Price"),
         "ramallah": MessageLookupByLibrary.simpleMessage("Ramallah"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "reservation": MessageLookupByLibrary.simpleMessage("Reservation"),
@@ -104,6 +118,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "serviceProvider":
             MessageLookupByLibrary.simpleMessage("Service providers"),
         "serviceType": MessageLookupByLibrary.simpleMessage("service type"),
+        "theService": MessageLookupByLibrary.simpleMessage("The service"),
         "username": MessageLookupByLibrary.simpleMessage("username"),
         "weSendCode": MessageLookupByLibrary.simpleMessage(
             "We will automatically send a confirmation code to your phone number"),

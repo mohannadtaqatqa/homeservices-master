@@ -4,8 +4,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
+import 'package:homeservice/core/function/fcm_config.dart';
 import 'package:homeservice/core/utilti/Color.dart';
-import 'package:homeservice/view/screen/buttom_bar.dart';
 import 'package:homeservice/view/screen/home.dart';
 import 'package:homeservice/view/screen/check_email.dart';
 import 'package:homeservice/view/screen/navbar_provider.dart';
@@ -83,6 +83,8 @@ class _loginState extends State<login_provider> {
   final myController1 = TextEditingController();
 
   Future<void> _login() async {
+    fcmconfig();
+    requestPermissionNotification();
     final String email = myController.text.trim();
     final String pass = myController1.text.trim();
     // final stroge = FlutterSecureStorage();
@@ -105,7 +107,7 @@ class _loginState extends State<login_provider> {
             responseData['provider']['countRequest'].toString();
         final String rating = responseData['provider']['rating'].toString();
         final prefs = await SharedPreferences.getInstance();
-
+        print("provider id => ${userId}");
         //  await stroge.write(key: "userEmail", value: userEmail);
         //  await stroge.write(key: 'isLoggedIn', value: 'true');
         //  await stroge.write(key: "userName", value: userName);
@@ -116,7 +118,8 @@ class _loginState extends State<login_provider> {
         prefs.setString("userId", userId);
         prefs.setString("countRequest", countRequest);
         prefs.setString("rating", rating);
-        FirebaseMessaging.instance.subscribeToTopic("new_request");
+    FirebaseMessaging.instance.subscribeToTopic("booking"+userId);
+
         Get.to(() => const Navbar_Provider());
       } else {
         // Login failed, show error message
@@ -144,10 +147,8 @@ class _loginState extends State<login_provider> {
       // Handle error
     }
   }
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         body: Padding(
       padding: const EdgeInsets.all(20.0),

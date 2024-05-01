@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:homeservice/core/utilti/Color.dart';
+import 'package:get/get.dart';
+import 'package:homeservice/view/screen/archives.dart';
 import 'package:homeservice/view/screen/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../generated/l10n.dart';
 
 class Account extends StatefulWidget {
   const Account({super.key});
@@ -80,62 +80,65 @@ class _AccountState extends State<Account> {
                     ),
                     InkWell(
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                        CircleAvatar(
-                          radius: 30,
-                          backgroundColor: Colors.green[200],
-                          child: const Icon(Icons.person),
-                        ),
-                        const SizedBox(
-                          width: 25,
-                        ),
-                        const Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("اعدادات الحساب",
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Cairo')),
-                            Text("اعدادات الحساب",
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Cairo')),
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 80,
-                        ),
-                        const Icon(Icons.arrow_forward_ios_rounded)
-                      ]),
+                            CircleAvatar(
+                              radius: 30,
+                              backgroundColor: Colors.green[200],
+                              child: const Icon(Icons.person),
+                            ),
+                            const SizedBox(
+                              width: 25,
+                            ),
+                            const Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("اعدادات الحساب",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Cairo')),
+                                Text("اعدادات الحساب",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Cairo')),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 80,
+                            ),
+                            const Icon(Icons.arrow_forward_ios_rounded)
+                          ]),
                     ),
                     const SizedBox(
                       height: 22,
                     ),
                     InkWell(
+                      onTap: () {
+                        Get.to( ()=> const Archives());
+                      },
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                        CircleAvatar(
-                          radius: 30,
-                          backgroundColor: Colors.yellow[200],
-                          child: const Icon(Icons.language),
-                        ),
-                        const SizedBox(
-                          width: 25,
-                        ),
-                        const Text("الارشيف",
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Cairo')),
-                        const SizedBox(
-                          width: 126,
-                        ),
-                        const Icon(Icons.arrow_forward_ios_rounded)
-                      ]),
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CircleAvatar(
+                              radius: 30,
+                              backgroundColor: Colors.yellow[200],
+                              child: const Icon(Icons.language),
+                            ),
+                            const SizedBox(
+                              width: 25,
+                            ),
+                            const Text("الارشيف",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Cairo')),
+                            const SizedBox(
+                              width: 126,
+                            ),
+                            const Icon(Icons.arrow_forward_ios_rounded)
+                          ]),
                     ),
                     const SizedBox(
                       height: 22,
@@ -143,31 +146,37 @@ class _AccountState extends State<Account> {
                     InkWell(
                       onTap: () async {
                         final prefs = await SharedPreferences.getInstance();
+                        String? userId = await prefs.getString("userId");
+                        print(prefs.getString("userId"));
+                        FirebaseMessaging.instance
+                            .unsubscribeFromTopic("ok${userId!}");
+                        FirebaseMessaging.instance
+                            .unsubscribeFromTopic("booking${userId}");
                         prefs.clear();
                         Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (ctx) => const login()));
                       },
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                        CircleAvatar(
-                          radius: 30,
-                          backgroundColor: Colors.red[200],
-                          child: const Icon(Icons.logout),
-                        ),
-                        const SizedBox(
-                          width: 25,
-                        ),
-                        const Text("تسجيل الخروج",
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Cairo')),
-                        const SizedBox(
-                          width: 100,
-                        ),
-                        const Icon(Icons.arrow_forward_ios_rounded)
-                      ]),
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CircleAvatar(
+                              radius: 30,
+                              backgroundColor: Colors.red[200],
+                              child: const Icon(Icons.logout),
+                            ),
+                            const SizedBox(
+                              width: 25,
+                            ),
+                            const Text("تسجيل الخروج",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Cairo')),
+                            const SizedBox(
+                              width: 100,
+                            ),
+                            const Icon(Icons.arrow_forward_ios_rounded)
+                          ]),
                     )
                   ]),
             ),

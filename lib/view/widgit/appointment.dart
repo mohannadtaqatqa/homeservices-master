@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:homeservice/core/utilti/Color.dart'; 
+import 'package:homeservice/core/utilti/Color.dart';
+import 'package:homeservice/data/model/rating.dart';
+import 'package:homeservice/generated/l10n.dart';
+import 'package:homeservice/view/widgit/AppointmentPage_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class Appointment extends StatelessWidget {
+Future<String?>? getUserType() async {
+  final prefs = await SharedPreferences.getInstance();
+  return prefs.getString('userType');
+}
+
+class Appointment extends StatefulWidget {
+  final String userType;
+  final String customerId;
+  final String providerId;
   final String fname;
   final String lname;
   final String address;
@@ -13,16 +25,23 @@ class Appointment extends StatelessWidget {
 
   const Appointment({
     super.key,
+    required this.phone,
+    required this.providerId,
+    required this.customerId,
     required this.fname,
     required this.lname,
     required this.address,
     required this.city,
     required this.des,
     required this.date,
-    required this.servname,
-    required this.phone,
+    required this.servname, required this.userType,
   });
 
+  @override
+  State<Appointment> createState() => _AppointmentState();
+}
+
+class _AppointmentState extends State<Appointment> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -47,7 +66,7 @@ class Appointment extends StatelessWidget {
                 ),
                 const SizedBox(width: 30),
                 Text(
-                  "$fname $lname",
+                  "${widget.fname} ${widget.lname}",
                   style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -57,7 +76,7 @@ class Appointment extends StatelessWidget {
                 const SizedBox(width: 20),
                 Flexible(
                   child: Text(
-                    "$city - $address",
+                    "${widget.city} - ${widget.address}",
                     style: const TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 15,
@@ -68,17 +87,17 @@ class Appointment extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             const Divider(color: Colors.grey, height: 1),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  "Phone:",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                Text(
+                  "${S.of(context).phoneNumber}:",
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(width: 20),
                 Text(
-                  phone,
+                  widget.phone,
                   style: const TextStyle(fontSize: 15),
                 ),
               ],
@@ -89,13 +108,13 @@ class Appointment extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  "Service:",
+                Text(
+                  "${S.of(context).theService}:",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(width: 20),
                 Text(
-                  servname,
+                  widget.servname,
                   style: const TextStyle(fontSize: 15),
                 ),
               ],
@@ -106,14 +125,14 @@ class Appointment extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  "Description:",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                Text(
+                  "${S.of(context).description}:",
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(width: 20),
                 Flexible(
                   child: Text(
-                    des,
+                    widget.des,
                     style: const TextStyle(fontSize: 15),
                   ),
                 ),
@@ -125,17 +144,36 @@ class Appointment extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  "Date:",
+                Text(
+                  "${S.of(context).date}:",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(width: 20),
                 Text(
-                  date,
+                  widget.date,
                   style: const TextStyle(fontSize: 15),
                 ),
               ],
             ),
+            const SizedBox(height: 10),
+            
+                userType == '0'?
+                     Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    rating(context, widget.customerId,widget.providerId);
+                  },
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                          const Color.fromRGBO(26, 153, 206, 1)),
+                      foregroundColor: MaterialStateProperty.all(const Color.fromARGB(255, 203, 6, 6))),
+                  child: Text(S.of(context).compulationRating),
+                ),
+              ],
+            ): Container()
+                  
           ],
         ),
       ),

@@ -59,5 +59,16 @@
   "Services":"الخدمات",
   "MyReservations":"حجوزاتي",
   "Notifications":"الاشعارات",
-  "Logout":"تسجيل الخروج"
+  "Logout":"تسجيل الخروج",
+  "compulationRating":"انتهاء والتقييم",
+  "theService":"الخدمة",
+  "description":"وصف",
+  "price":"السعر",
+  "date":"التاريخ",
+  "TapRating":"انقر لتقييم مزود الخدمة وإعطاء بعض الملاحظات عن مزود الخدمة",
+  "errorRating":"يجب أن تقييم الخدمة",
+  "SubmitRating":"ارسال التقييم",
+  "myRequests":"طلباتي",
+  "myAppointments":"مواعيدي",
+  "Archive":"الارشيف"
 }

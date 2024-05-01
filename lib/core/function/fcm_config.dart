@@ -4,7 +4,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 
 requestPermissionNotification() async {
-  NotificationSettings settings =
+  // NotificationSettings settings =
       await FirebaseMessaging.instance.requestPermission(
     alert: true,
     announcement: false,

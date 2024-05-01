@@ -53,10 +53,9 @@ class _provider_detailsState extends State<provider_details> {
               "serviceid": "${widget.serviceID}",
               "providerid": data.id.toString(),
               "customerid": id.toString(),
-              "date": DateUtil.formatDate(DateController.text),
+              "date": DateController.text,
               "description": description
             }));
-        FirebaseMessaging.instance.subscribeToTopic("booking${data.id.toString()}");
       } catch (e) {
         print('Error: $e');
         ScaffoldMessenger.of(context).showSnackBar(
@@ -64,8 +63,9 @@ class _provider_detailsState extends State<provider_details> {
       }
       Navigator.pop(context);
       Navigator.pop(context);
+      FirebaseMessaging.instance.subscribeToTopic("booking");
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('تمت عملية حجز الخدمة ',
+        content: Text('تم حجز الخدمة',
             style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.green,
       ));

@@ -58,5 +58,16 @@
   "Services":"Services",
   "myReservations":"My Reservations",
   "Notifications":"Notifications",
-  "Logout":"Logout"
+  "Logout":"Logout",
+  "compulationRating":"Compulation and evaluation",
+  "theService":"The service",
+  "description":"Description",
+  "price":"Price",
+  "date":"Date",
+  "TapRating":"Tap to rate the service provider, and give some feedback about the service provider",
+  "errorRating":"Please rate the service",
+  "SubmitRating":"Submit Rating",
+  "myRequests":"My Requests",
+  "myAppointments":"My Appointments",
+  "Archive":"Archives"
 }

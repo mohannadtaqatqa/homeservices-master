@@ -3,20 +3,17 @@
     "platforms": {
       "android": {
         "default": {
-          "projectId": "home-services-5b47e",
-          "appId": "1:393024816861:android:dc6115bfc611b6639c7d34",
+          "projectId": "home-services-52080",
+          "appId": "1:622519479170:android:f2badeeaa8b41aa3e77d9b",
           "fileOutput": "android/app/google-services.json"
         }
       },
       "dart": {
         "lib/firebase_options.dart": {
-          "projectId": "home-services-5b47e",
+          "projectId": "home-services-52080",
           "configurations": {
-            "android": "1:393024816861:android:dc6115bfc611b6639c7d34",
-            "ios": "1:393024816861:ios:48e856a9e41f042b9c7d34",
-            "macos": "1:393024816861:ios:48e856a9e41f042b9c7d34",
-            "web": "1:393024816861:web:bea001723ccdb1d19c7d34",
-            "windows": "1:393024816861:web:a1c337265030c3fc9c7d34"
+            "android": "1:622519479170:android:f2badeeaa8b41aa3e77d9b",
+            "ios": "1:622519479170:ios:5ff424284ea1ae54e77d9b"
           }
         }
       }

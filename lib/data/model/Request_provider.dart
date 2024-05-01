@@ -20,7 +20,7 @@ Future<List<Map<String, dynamic>>> fetchRequests_provider() async {
      final prefs = await SharedPreferences.getInstance();
       int userId = int.parse(prefs.getString('userId')!);
     final response =
-        await get(Uri.parse('http://10.0.2.2:5000/GetRequestProvider/${userId}'));
+        await get(Uri.parse('http://10.0.2.2:5000/GetRequestProvider/$userId'));
     if (response.statusCode == 200) {
       final List<dynamic> resBody = jsonDecode(response.body);
       if (resBody is! List) {
@@ -131,7 +131,7 @@ class _provider_listState extends State<Request_provider> {
                 child: Column(
               children: [
                 Image.asset(
-                  'images/404.jpg',
+                  'images/img 404.png',
                   width: 200,
                   height: 200,
                 ),
